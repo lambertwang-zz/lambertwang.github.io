@@ -1,0 +1,11 @@
+@import '../../common/common';
+.header {
+    background-color: $background-highlight;
+    color: $content-highlight;
+
+    line-height: 2em;
+    height: 2em;
+    font-size: 32px; 
+
+    text-align: center;
+}
