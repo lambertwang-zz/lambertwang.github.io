@@ -32,7 +32,14 @@
         ],
         "no-console": [
             false
-        ]
+        ],
+        "object-literal-sort-keys": [
+            false
+        ],
+        "ordered-imports": [
+            false
+        ],
+        "no-unused-variable": true
     },
     "rulesDirectory": []
 }

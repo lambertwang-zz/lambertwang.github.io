@@ -1,43 +1,90 @@
+// Dependencies
 import * as React from 'react';
+import { Store } from 'redux';
+import { connect } from 'react-redux';
 
 // Local
 import './Root.scss';
+import { IRootState } from './rootReducer';
 
-// Components
-import Header from '../components/header/Header';
+// Components and containers
+import Header, { IHeaderProps } from '../components/header/Header';
 import { FONT_NAMES, loadFont } from '../utilities/fontLoader';
+import Pullout from '../containers/pullout';
+
+// Reducers
+// import RootReducer from '../reducers/rootReducer';
+
+// Actions
+import togglePullout from '../actions/togglePullout';
+
+// Utilities
+import css from '../utilities/css';
+import { SIZE_BREAKPOINT, getSizeThreshold } from '../utilities/responsive';
 
 interface IProps {
-    something?: any;
+    onTogglePullout?: () => void;
 }
 
 interface IState {
     theme: string;
+    sizeThreshold: SIZE_BREAKPOINT;
 }
 
-export default class Root extends React.Component<IProps, IState> {
+class RootPresentation extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = { theme: 'light' };
+        this.state = {
+            theme: 'dark',
+            sizeThreshold: getSizeThreshold(),
+        };
+
         this._toggleTheme = this._toggleTheme.bind(this);
+        this._onWindowResized = this._onWindowResized.bind(this);
     }
 
     public componentWillMount() {
         loadFont(FONT_NAMES.DROID_SANS);
     }
 
+    public componentDidMount() {
+        window.addEventListener('resize', this._onWindowResized);
+    }
+
     public render() {
-        const { theme } = this.state;
-        const headerProps = {
+        const {
+            onTogglePullout,
+        } = this.props;
+
+        const {
+            theme,
+            sizeThreshold,
+        } = this.state;
+
+        const headerProps: IHeaderProps = {
             title: 'Hello, world!',
+            leftItems: [
+                {
+                    onClick: onTogglePullout,
+                    label: 'H',
+                },
+            ],
         };
 
         return (
             <div
-                className={ theme }
+                className={ css('root', {
+                    [theme]: true,
+                 }) }
                 onClick={ this._toggleTheme } >
-                <Header { ...headerProps } />
-                Hello, world!
+                <div className={ css('content', {
+                        fill: sizeThreshold <= SIZE_BREAKPOINT.small,
+                        large: getSizeThreshold() === SIZE_BREAKPOINT.large,
+                        xlarge: getSizeThreshold() >= SIZE_BREAKPOINT.xlarge,
+                    }) }>
+                    <Header { ...headerProps } />
+                    <Pullout />
+                </div>
             </div>
         );
     }
@@ -48,7 +95,26 @@ export default class Root extends React.Component<IProps, IState> {
         } else {
             this.setState({ theme: 'dark' });
         }
-        console.log(this.state.theme);
     }
 
+    private _onWindowResized() {
+        this.setState({ sizeThreshold: getSizeThreshold() });
+    }
 }
+
+function mapStateToProps(state: IRootState, ownProps: any): IProps {
+    return {
+    };
+}
+
+function mapDispatchToProps(dispatch: any, ownProps: any): IProps {
+    return {
+        onTogglePullout: () => {
+            dispatch(togglePullout('Did this change?'));
+        },
+    };
+}
+
+const Root = connect(null, mapDispatchToProps)(RootPresentation);
+
+export default Root;

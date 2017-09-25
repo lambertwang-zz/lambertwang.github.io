@@ -1,13 +1,13 @@
 @import '../../common/common';
 
 .light {
-    .header { 
+    .pullout { 
         background-color: $background-light-highlight;
         color: $content-light-highlight;
     }
 }
 
-.header {
+.pullout {
     background-color: $background-highlight;
     color: $content-highlight;
 
@@ -17,15 +17,4 @@
 
     text-align: center;
     align-items: center;
-}
-
-.sideItem {
-    position: absolute;
-    background-color: red;
-
-    line-height: 1em;
-
-    width: 1em;
-    height: 1em;
-    padding: .5em;
 }

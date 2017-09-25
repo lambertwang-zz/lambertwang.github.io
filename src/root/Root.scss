@@ -1,8 +1,51 @@
 @import '../common/common';
 
-body {
+.root {
     color: $content-primary;
+    background-color: $background-base;
+
+    &.light {
+        color: $content-light-primary;
+        background-color: $background-light-base;
+    }
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.light {
+    .content {
+        background-color: $background-light;
+    }
+}
+
+.content {
     background-color: $background;
 
-    font-family: $font-stack;
+    padding-bottom: 32px;
+
+    // Fill mode
+    &.fill {
+        width: 100%;
+        margin: 0px auto;
+    }
+
+    // Column mode
+    width: 640px;
+    margin: 16px auto;
+
+    &.large {
+        width: 60%
+    }
+
+    &.xlarge {
+        width: 1280px;
+    }
+
 }
