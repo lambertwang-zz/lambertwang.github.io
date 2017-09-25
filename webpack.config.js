@@ -1,7 +1,7 @@
 const webpack = require('webpack'),
     path = require('path'),
     htmlWebpackPlugin = require('html-webpack-plugin'),
-    BUILD_DIR = path.resolve(__dirname, 'dist'),
+    BUILD_DIR = path.resolve(__dirname, ''),
     CLIENT_DIR = path.resolve(__dirname, 'src'),
     APP_DIR = `${CLIENT_DIR}/`;
 
