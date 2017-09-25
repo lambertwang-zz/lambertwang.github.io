@@ -24,6 +24,7 @@ import { SIZE_BREAKPOINT, getSizeThreshold } from '../utilities/responsive';
 
 interface IProps {
     onTogglePullout?: () => void;
+    isPulloutVisible?: boolean;
 }
 
 interface IState {
@@ -54,6 +55,7 @@ class RootPresentation extends React.Component<IProps, IState> {
     public render() {
         const {
             onTogglePullout,
+            isPulloutVisible,
         } = this.props;
 
         const {
@@ -78,9 +80,7 @@ class RootPresentation extends React.Component<IProps, IState> {
                  }) }
                 onClick={ this._toggleTheme } >
                 <div className={ css('content', {
-                        fill: sizeThreshold <= SIZE_BREAKPOINT.small,
-                        large: getSizeThreshold() === SIZE_BREAKPOINT.large,
-                        xlarge: getSizeThreshold() >= SIZE_BREAKPOINT.xlarge,
+                        [SIZE_BREAKPOINT[sizeThreshold]]: true,
                     }) }>
                     <Header { ...headerProps } />
                     <Pullout />

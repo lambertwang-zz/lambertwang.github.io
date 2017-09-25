@@ -1,20 +1,61 @@
 @import '../../common/common';
 
 .light {
-    .pullout { 
+    .pullout .pullout-content { 
         background-color: $background-light-highlight;
         color: $content-light-highlight;
     }
 }
 
+.small {
+    .pullout .pullout-content {
+        width: 320px;
+    }
+}
+
 .pullout {
-    background-color: $background-highlight;
-    color: $content-highlight;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
 
-    line-height: 2em;
-    height: 2em;
-    font-size: 32px; 
+    .pullout-content {
+        position: fixed;
+        background-color: $background-highlight;
+        color: $content-highlight;
 
-    text-align: center;
-    align-items: center;
+        z-index: 10;
+
+        height: 100%;
+        width: 400px;
+
+        line-height: 1em;
+        font-size: 32px; 
+
+        text-align: center;
+        align-items: center;
+
+        padding: 16px;
+    }
+
+    .pullout-shade {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 9;
+
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    display: none;
+    &.isVisible {
+        display: block;
+
+        shade: {
+
+        }
+    }
 }

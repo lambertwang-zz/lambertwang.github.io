@@ -1,4 +1,5 @@
-export const TOGGLE_PULLOUT = 'TOGGLE_PULLOUT';
+// Local
+import { TOGGLE_PULLOUT } from './actionNames';
 
 export default function togglePullout(title: string) {
     return {

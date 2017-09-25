@@ -2,10 +2,11 @@
 import { combineReducers } from 'redux';
 
 // Actions
-import { TOGGLE_PULLOUT } from '../actions/togglePullout';
+import { TOGGLE_PULLOUT, CLOSE_PULLOUT } from '../actions/actionNames';
 
 export interface IState {
     title: string;
+    isVisible: boolean;
 }
 
 // export const reducer = combineReducers<IState>({
@@ -35,7 +36,19 @@ export const reducer = combineReducers<IState>({
         switch (type) {
             case TOGGLE_PULLOUT:
                 return title;
-            default: return 'Default title';
+            default: return state;
+        }
+    },
+    isVisible: (state = false, action) => {
+        const {
+            type,
+        } = action;
+        switch (type) {
+            case TOGGLE_PULLOUT:
+                return !state;
+            case CLOSE_PULLOUT:
+                return false;
+            default: return state;
         }
     },
 });

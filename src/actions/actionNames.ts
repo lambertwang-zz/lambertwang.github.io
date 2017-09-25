@@ -1,0 +1,2 @@
+export const CLOSE_PULLOUT = 'CLOSE_PULLOUT';
+export const TOGGLE_PULLOUT = 'TOGGLE_PULLOUT';
