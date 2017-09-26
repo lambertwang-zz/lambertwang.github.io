@@ -1,9 +1,8 @@
 // Local
 import { TOGGLE_PULLOUT } from './actionNames';
 
-export default function togglePullout(title: string) {
+export default function togglePullout() {
     return {
         type: TOGGLE_PULLOUT,
-        title,
     };
 }

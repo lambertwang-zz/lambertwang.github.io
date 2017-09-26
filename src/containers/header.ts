@@ -9,17 +9,15 @@ import { default as Component, IHeaderProps } from '../components/header/Header'
 
 function mapStateToProps(state: IRootState, ownProps: any): IHeaderProps {
     return {
-        title: 'Did it work?',
+        title: state.header.title,
     };
 }
 
 function mapDispatchToProps(dispatch: any, ownProps: any): IHeaderProps {
     return {
-        title: 'Probably not',
     };
 }
 
-// const Header = connect(mapStateToProps, mapDispatchToProps)(Component);
-const Header = connect(null, mapDispatchToProps)(Component);
+const Header = connect(mapStateToProps, mapDispatchToProps)(Component);
 
 export default Header;

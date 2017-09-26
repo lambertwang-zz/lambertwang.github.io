@@ -8,22 +8,13 @@ import { TOGGLE_PULLOUT, CLOSE_PULLOUT } from '../actions/actionNames';
 import { IMenuItemProps } from '../components/menuItem/MenuItem';
 
 export interface IState {
-    title: string;
-    items: IMenuItemProps[];
+    items: number[];
     isVisible: boolean;
 }
 
 export const reducer = combineReducers<IState>({
-    title: (state = 'Default title', action) => {
-        const {
-            type,
-            title,
-        } = action;
-        switch (type) {
-            case TOGGLE_PULLOUT:
-                return title;
-            default: return state;
-        }
+    items: (state = [0], action) => {
+        return state;
     },
     isVisible: (state = false, action) => {
         const {

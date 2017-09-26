@@ -8,7 +8,8 @@ import './Root.scss';
 import { IState as IRootState } from './rootReducer';
 
 // Components and containers
-import Header, { IHeaderProps } from '../components/header/Header';
+import { IHeaderProps } from '../components/header/Header';
+import Header from '../containers/header';
 import { FONT_NAMES, loadGoogleFont } from '../utilities/fontLoader';
 import Pullout from '../containers/pullout';
 import { IPulloutProps } from '../components/pullout/Pullout';
@@ -70,7 +71,6 @@ class RootPresentation extends React.Component<IProps, IState> {
         } = this.state;
 
         const headerProps: IHeaderProps = {
-            title: 'Hello, world!',
             leftItems: [
                 {
                     // label: 'Menu',
@@ -117,7 +117,7 @@ function mapStateToProps(state: IRootState, ownProps: any): IProps {
 function mapDispatchToProps(dispatch: any, ownProps: any): IProps {
     return {
         onTogglePullout: () => {
-            dispatch(togglePullout('Did this change?'));
+            dispatch(togglePullout());
         },
         onToggleTheme: () => {
             dispatch(toggleTheme());
