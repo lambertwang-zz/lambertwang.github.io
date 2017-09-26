@@ -4,6 +4,9 @@ import * as React from 'react';
 // Local
 import './Pullout.scss';
 
+// Components
+import MenuItem, { IMenuItemProps } from '../menuItem/MenuItem';
+
 // Utilities
 import css from '../../utilities/css';
 
@@ -11,6 +14,7 @@ export interface IPulloutProps {
     title?: string;
     isVisible?: boolean;
     onClose?: () => void;
+    items?: IMenuItemProps[];
 }
 
 export interface IPulloutState {
@@ -28,6 +32,7 @@ export default class Pullout extends React.Component<IPulloutProps, IPulloutStat
         const {
             title,
             isVisible,
+            items,
         } = this.props;
 
         return (
@@ -37,9 +42,10 @@ export default class Pullout extends React.Component<IPulloutProps, IPulloutStat
                 onClick={ this._onClose }>
                 <div className={ 'pullout-shade' } />
                 <div className={ 'pullout-content' }>
-                    <span>
+                    <span className='pullout-title'>
                         { !!title && title }
                     </span>
+                    { !!items && items.map(this._onRenderItem) }
                 </div>
             </div>
         );
@@ -56,5 +62,12 @@ export default class Pullout extends React.Component<IPulloutProps, IPulloutStat
 
         ev.stopPropagation();
         ev.preventDefault();
+    }
+
+    private _onRenderItem(item: IMenuItemProps, index: number): JSX.Element {
+        return (
+            <MenuItem { ...item } 
+                key={ index }/>
+        );
     }
 }

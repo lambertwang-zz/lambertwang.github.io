@@ -19,6 +19,7 @@ $blue    : #268bd2;
 $cyan    : #2aa198;
 $green   : #859900;
 
+// Color themes
 $background-base: $base04;
 $background: $base03;
 $background-highlight: $base02;
@@ -33,5 +34,9 @@ $content-light-secondary: $base1;
 $content-light-primary: $base00;
 $content-light-highlight: $base01;
 
-
+// Text
 $font-stack: 'Droid Sans';
+
+// Animations
+$ease-out: cubic-bezier(.16, .65, .45, .84);
+$duration-medium: 0.3s;

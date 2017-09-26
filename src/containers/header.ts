@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 
 // Root
-import { IRootState } from '../root/rootReducer';
+import { IState as IRootState } from '../root/rootReducer';
 
 // Local
 import { default as Component, IHeaderProps } from '../components/header/Header';

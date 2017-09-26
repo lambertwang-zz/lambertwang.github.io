@@ -4,8 +4,12 @@ import { combineReducers } from 'redux';
 // Actions
 import { TOGGLE_PULLOUT, CLOSE_PULLOUT } from '../actions/actionNames';
 
+// Components
+import { IMenuItemProps } from '../components/menuItem/MenuItem';
+
 export interface IState {
     title: string;
+    items: IMenuItemProps[];
     isVisible: boolean;
 }
 

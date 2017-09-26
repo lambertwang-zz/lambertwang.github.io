@@ -5,6 +5,11 @@
         background-color: $background-light-highlight;
         color: $content-light-highlight;
     }
+
+    .header .header-left .menuItem:hover {
+        background-color: $background-light;
+        color: $content-light-primary;
+    }
 }
 
 .header {
@@ -17,15 +22,20 @@
 
     text-align: center;
     align-items: center;
-}
 
-.sideItem {
-    position: absolute;
-    background-color: red;
+    .header-left {
+        position: absolute;
 
-    line-height: 1em;
+        .menuItem:hover {
+            background-color: $background;
+            i {
+                color: $content-primary;
+            }
+        }
+    }
 
-    width: 1em;
-    height: 1em;
-    padding: .5em;
+    .header-title {
+        position: absolute;
+        transform: translate(-50%, 0%);
+    }
 }

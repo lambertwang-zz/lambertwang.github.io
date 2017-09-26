@@ -1,17 +1,16 @@
+// Dependencies
 import * as React from 'react';
+
+// Components
+import MenuItem, { IMenuItemProps } from '../menuItem/MenuItem';
 
 // Local
 import './Header.scss';
 
-export interface IHeaderItem {
-    onClick?: () => void;
-    label?: string;
-}
-
 export interface IHeaderProps {
     title?: string;
-    leftItems?: IHeaderItem[];
-    rightItems?: IHeaderItem[];
+    leftItems?: IMenuItemProps[];
+    rightItems?: IMenuItemProps[];
 }
 
 export interface IHeaderState {
@@ -31,33 +30,20 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
         } = this.props;
         return (
             <div className = {'header'}>
-                { !!leftItems && leftItems.map(this._renderSideItem) }
-                <span>
+                <div className={ 'header-left' }>
+                    { !!leftItems && leftItems.map(this._renderSideItem) }
+                </div>
+                <span className='header-title'>
                     { !!title && title }
                 </span>
             </div>
         );
     }
 
-    private _renderSideItem(item: IHeaderItem) {
-        const {
-            onClick,
-            label,
-        } = item;
-
-        const newOnClick = (ev: React.MouseEvent<HTMLElement>) => {
-            if (onClick) {
-                onClick();
-            }
-            ev.stopPropagation();
-            ev.preventDefault();
-        };
-
+    private _renderSideItem(item: IMenuItemProps, index: number) {
         return (
-            <div className = {'sideItem'}
-                onClick = { newOnClick }>
-                { !!label && label }
-            </div>
+            <MenuItem { ...item }
+                key={ index } />
         );
     }
 }
