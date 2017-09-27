@@ -6,10 +6,6 @@ import { IState as IRootState } from '../root/rootReducer';
 
 // Actions
 import closePullout from '../actions/closePullout';
-import toggleTheme from '../actions/toggleTheme';
-
-// Datasources
-import BggApi from '../datasources/bgg/BggApi';
 
 // Local
 import { default as Component, IPulloutProps } from '../components/pullout/Pullout';
@@ -19,25 +15,14 @@ function mapStateToProps(state: IRootState, ownProps: any): IPulloutProps {
         menuItems,
         pullout,
     } = state;
-    const allMenuItems = menuItems.itemStore;
+    const allMenuItems = menuItems;
 
-    const pulloutItems = allMenuItems.filter((itemStore) => {
-        return pullout.items.indexOf(itemStore.id) >= 0;
-    }).map((itemStore) => itemStore.item);
+    const pulloutItems = pullout.items.map((itemId) => allMenuItems[itemId]);
 
     return {
         title: 'Menu',
         isVisible: pullout.isVisible,
-        items: pulloutItems.concat([
-            {
-                label: 'Hot Items',
-                onClick: () => {
-                    BggApi.hot((request) => {
-                        return;
-                    });
-                },
-            },
-        ]),
+        items: pulloutItems,
     };
 }
 

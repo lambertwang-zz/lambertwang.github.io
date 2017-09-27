@@ -8,7 +8,7 @@ export interface ISizeBreakpoints {
 }
 
 export const DEFAULT_SIZE_BREAKPOINTS: ISizeBreakpoints = {
-    small: 640,
+    small: 800,
     medium: 1080,
     large: 1920,
     xlarge: 2560,

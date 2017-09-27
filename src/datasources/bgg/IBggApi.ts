@@ -1,8 +1,7 @@
+// Datasources
+import { IThing } from '../IThing';
 
-export interface IBggThing {
-    id: string;
+export interface IBggThing extends IThing {
     rank: number;
-    thumbnail: string;
-    name: string;
     yearPublished: number;
 }

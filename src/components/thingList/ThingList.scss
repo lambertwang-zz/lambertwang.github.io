@@ -1,0 +1,41 @@
+@import '../../common/common';
+
+.light {
+    .bggThing.even {
+        background-color: $background-light-highlight;
+        color: $content-light-highlight;
+    }
+}
+
+.bggThing.even {
+    background-color: $background-highlight;
+    color: $content-highlight;
+}
+
+.bggThing {
+    padding: 4px 0 4px 4px;
+    border-right: solid 4px rgba(0, 0, 0, 0);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bggThing-content {
+    padding-left: 6px;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    span {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &.bggThing-title {
+            font-size: 24px;
+        }
+
+        &.bggThing-subtitle {
+            font-size: 16px;
+        }
+    }
+}

@@ -28,8 +28,6 @@
 .content {
     background-color: $background;
 
-    padding-bottom: 32px;
-
     // Fill mode
     &.small {
         width: 100%;
@@ -48,4 +46,8 @@
         width: 1280px;
     }
 
+}
+
+.content-main {
+    padding: 16px;
 }

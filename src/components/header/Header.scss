@@ -5,11 +5,6 @@
         background-color: $background-light-highlight;
         color: $content-light-highlight;
     }
-
-    .header .header-left .menuItem:hover {
-        background-color: $background-light;
-        color: $content-light-primary;
-    }
 }
 
 .header {
@@ -25,13 +20,6 @@
 
     .header-left {
         position: absolute;
-
-        .menuItem:hover {
-            background-color: $background;
-            i {
-                color: $content-primary;
-            }
-        }
     }
 
     .header-title {

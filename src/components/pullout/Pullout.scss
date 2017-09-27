@@ -5,11 +5,6 @@
         background-color: $background-light-highlight;
         color: $content-light-highlight;
     }
-
-    .pullout-content .menuItem:hover {
-        background-color: $background-light;
-        color: $content-light-primary;
-    }
 }
 
 .small {
@@ -79,11 +74,6 @@
     .pullout-title {
         display: block;
         text-align: center;
-    }
-
-    .menuItem:hover {
-        background-color: $background;
-        color: $content-primary;
     }
 
     .menuItem {

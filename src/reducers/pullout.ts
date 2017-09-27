@@ -5,7 +5,7 @@ import { combineReducers } from 'redux';
 import { TOGGLE_PULLOUT, CLOSE_PULLOUT } from '../actions/actionNames';
 
 // Components
-import { IMenuItemProps } from '../components/menuItem/MenuItem';
+import { MENU_ITEM_ID } from '../containers/menuItems';
 
 export interface IState {
     items: number[];
@@ -13,9 +13,14 @@ export interface IState {
 }
 
 export const reducer = combineReducers<IState>({
-    items: (state = [0], action) => {
-        return state;
-    },
+    items: (
+        state = [
+            MENU_ITEM_ID.showHotItems,
+            MENU_ITEM_ID.toggleTheme,
+        ],
+        action) => {
+            return state;
+        },
     isVisible: (state = false, action) => {
         const {
             type,

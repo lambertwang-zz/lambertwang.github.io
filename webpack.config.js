@@ -15,8 +15,10 @@ const config = {
     },
     output: {
         path: BUILD_DIR,
-        filename: "[name].[hash].bundle.js",
-        chunkFilename: "[id].[hash].bundle.js"
+        // filename: "[name].[hash].bundle.js",
+        filename: "[name].bundle.js",
+        // chunkFilename: "[id].[hash].bundle.js"
+        chunkFilename: "[id].bundle.js"
     },
     module: {
         rules: [
@@ -57,7 +59,8 @@ const config = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor', 
-            filename: '[name].[hash].js'
+            // filename: '[name].[hash].js'
+            filename: '[name].js'
         })
     ]
 };

@@ -28,6 +28,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
             leftItems,
             rightItems,
         } = this.props;
+
         return (
             <div className = {'header'}>
                 <div className={ 'header-left' }>
@@ -36,13 +37,19 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
                 <span className='header-title'>
                     { !!title && title }
                 </span>
+                <div className={ 'header-right' }>
+                    { !!rightItems && rightItems.map(this._renderSideItem) }
+                </div>
             </div>
         );
     }
 
     private _renderSideItem(item: IMenuItemProps, index: number) {
+        const itemForRender = item;
+        itemForRender.label = '';
+
         return (
-            <MenuItem { ...item }
+            <MenuItem { ...itemForRender }
                 key={ index } />
         );
     }

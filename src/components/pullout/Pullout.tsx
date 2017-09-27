@@ -7,7 +7,7 @@ import './Pullout.scss';
 // Components
 import MenuItem, { IMenuItemProps } from '../menuItem/MenuItem';
 
-// Utilities
+// utilities
 import css from '../../utilities/css';
 
 export interface IPulloutProps {
@@ -66,7 +66,7 @@ export default class Pullout extends React.Component<IPulloutProps, IPulloutStat
 
     private _onRenderItem(item: IMenuItemProps, index: number): JSX.Element {
         return (
-            <MenuItem { ...item } 
+            <MenuItem { ...item }
                 key={ index }/>
         );
     }

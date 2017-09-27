@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import Root from './root/Root';
 import rootStore from './root/rootStore';
 
-const app = ReactDom.render(
+ReactDom.render(
     <Provider store = {rootStore}>
         <Root />
     </Provider>,

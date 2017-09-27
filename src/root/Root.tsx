@@ -1,38 +1,31 @@
 // Dependencies
 import * as React from 'react';
-import { Store } from 'redux';
 import { connect } from 'react-redux';
+
+// Actions
+import resizeBreakpoint from '../actions/resizeBreakpoint';
+import requestHotList from '../actions/requestHotList';
 
 // Local
 import './Root.scss';
 import { IState as IRootState } from './rootReducer';
+import rootStore from './rootStore';
 
 // Components and containers
-import { IHeaderProps } from '../components/header/Header';
 import Header from '../containers/header';
-import { FONT_NAMES, loadGoogleFont } from '../utilities/fontLoader';
+import ContentList from '../containers/contentList';
 import Pullout from '../containers/pullout';
-import { IPulloutProps } from '../components/pullout/Pullout';
-import { IMenuItemProps } from '../components/menuItem/MenuItem';
-
-// Reducers
-// import RootReducer from '../reducers/rootReducer';
-
-// Actions
-import togglePullout from '../actions/togglePullout';
-import toggleTheme from '../actions/toggleTheme';
 
 // Utilities
+import { THEME } from '../common/constants';
 import css from '../utilities/css';
 import { SIZE_BREAKPOINT, getSizeThreshold } from '../utilities/responsive';
-import { THEME } from '../common/constants';
+import { FONT_NAMES, loadGoogleFont } from '../utilities/fontLoader';
 
 interface IProps {
-    onTogglePullout?: () => void;
-    onToggleTheme?: () => void;
-
     isPulloutVisible?: boolean;
     theme?: THEME;
+    onResizeBreakpoint?: (breakpoint: SIZE_BREAKPOINT) => void;
 }
 
 interface IState {
@@ -56,55 +49,43 @@ class RootPresentation extends React.Component<IProps, IState> {
 
     public componentDidMount() {
         window.addEventListener('resize', this._onWindowResized);
+
+        // Load hot items on page load
+        rootStore.dispatch(requestHotList());
     }
 
     public render() {
         const {
-            onTogglePullout,
-            onToggleTheme,
             theme,
-            isPulloutVisible,
         } = this.props;
 
         const {
             sizeThreshold,
         } = this.state;
 
-        const headerProps: IHeaderProps = {
-            leftItems: [
-                {
-                    // label: 'Menu',
-                    icon: 'menu',
-                    onClick: onTogglePullout,
-                },
-            ],
-        };
-
-        const pulloutProps: IPulloutProps = {
-            items: [
-                {
-                    onClick: onToggleTheme,
-                },
-            ],
-        };
-
         return (
             <div
                 className={ css('root', {
-                    [THEME[theme]]: true,
+                    [THEME[theme].toLowerCase()]: true,
                  }) }>
                 <div className={ css('content', {
                         [SIZE_BREAKPOINT[sizeThreshold]]: true,
                     }) }>
-                    <Header { ...headerProps } />
+                    <Header />
                     <Pullout />
+                    <div className={ 'content-main' }>
+                        <ContentList />
+                    </div>
                 </div>
             </div>
         );
     }
 
     private _onWindowResized() {
-        this.setState({ sizeThreshold: getSizeThreshold() });
+        const newSize = getSizeThreshold();
+        if (newSize !== this.state.sizeThreshold) {
+            this.setState({ sizeThreshold: getSizeThreshold() });
+        }
     }
 }
 
@@ -116,12 +97,7 @@ function mapStateToProps(state: IRootState, ownProps: any): IProps {
 
 function mapDispatchToProps(dispatch: any, ownProps: any): IProps {
     return {
-        onTogglePullout: () => {
-            dispatch(togglePullout());
-        },
-        onToggleTheme: () => {
-            dispatch(toggleTheme());
-        },
+        onResizeBreakpoint: (breakpoint: SIZE_BREAKPOINT) => { dispatch(resizeBreakpoint(breakpoint)); },
     };
 }
 

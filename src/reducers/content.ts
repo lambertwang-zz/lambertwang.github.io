@@ -1,12 +1,15 @@
 // Dependencies
 import { combineReducers } from 'redux';
 
-// Components
-import { MENU_ITEM_ID } from '../containers/menuItems';
+// Actions
+import { RECEIVE_THING_LIST } from '../actions/actionNames';
+
+// Datasources
+import { IBggThing } from '../datasources/bgg/IBggApi';
 
 export interface IState {
     title: string;
-    leftItems: number[];
+    things: IBggThing[];
 }
 
 export const reducer = combineReducers<IState>({
@@ -19,11 +22,19 @@ export const reducer = combineReducers<IState>({
             default: return state;
         }
     },
-    leftItems: (
+    things: (
         state = [
-            MENU_ITEM_ID.togglePullout,
         ],
         action) => {
-        return state;
+        const {
+            type,
+            things,
+        } = action;
+
+        switch (type) {
+            case RECEIVE_THING_LIST:
+                return things;
+            default: return state;
+        }
     },
 });
