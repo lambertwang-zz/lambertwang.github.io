@@ -25,7 +25,7 @@ export default class BggApi {
         function onReadyFunction() {
             if (this.readyState === XMLHttpRequest.DONE) {
                 const xmlList = BggApi._parseResponse(this);
-                callBack([].slice.call(xmlList.children[0].children).map(BggApi._mapItemXML));
+                callBack([].slice.call(xmlList.children[0].children).map(BggApi._mapItemXml));
             }
         }
 
@@ -37,7 +37,7 @@ export default class BggApi {
         return xmlDom;
     }
 
-    private static _mapItemXML(itemXml: any): IBggThing {
+    private static _mapItemXml(itemXml: any): IBggThing {
         const ret = {
             id: itemXml.getAttribute('id'),
             rank: Number(itemXml.getAttribute('rank')),

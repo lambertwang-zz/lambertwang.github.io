@@ -11,9 +11,11 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "require": "^2.4.20",
     "typescript": "^2.5.2"
   },
   "devDependencies": {
+    "@types/node": "^8.0.31",
     "awesome-typescript-loader": "^3.2.3",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -26,6 +28,7 @@
     "sass": "^1.0.0-beta.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "typings-for-css-modules-loader": "^1.6.1",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
   },

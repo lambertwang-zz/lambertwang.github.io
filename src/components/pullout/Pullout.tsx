@@ -41,7 +41,7 @@ export default class Pullout extends React.Component<IPulloutProps, IPulloutStat
                 }) }
                 onClick={ this._onClose }>
                 <div className={ 'pullout-shade' } />
-                <div className={ 'pullout-content' }>
+                <div className={ 'pullout-content highlight' }>
                     <span className='pullout-title'>
                         { !!title && title }
                     </span>

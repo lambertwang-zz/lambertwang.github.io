@@ -39,7 +39,8 @@
         "ordered-imports": [
             false
         ],
-        "no-unused-variable": true
+        "no-unused-variable": true,
+        "no-var-requires": false
     },
     "rulesDirectory": []
 }

@@ -1,19 +1,23 @@
 // Dependencies
 import * as React from 'react';
 
+// Components
+import BaseComponent, { IBaseProps } from '../base/BaseComponent';
+import { Icon, Label } from '../base/components';
+
 // Utilities
 import css from '../../utilities/css';
 
 // Local
 import './MenuItem.scss';
 
-export interface IMenuItemProps {
+export interface IMenuItemProps extends IBaseProps {
     label?: string;
     icon?: string;
     onClick?: () => void;
 }
 
-export default class MenuItem extends React.Component<IMenuItemProps, {}> {
+export default class MenuItem extends BaseComponent<IMenuItemProps, {}> {
     constructor(props: IMenuItemProps) {
         super(props);
 
@@ -24,19 +28,31 @@ export default class MenuItem extends React.Component<IMenuItemProps, {}> {
         const {
             label,
             icon,
+            onClick,
         } = this.props;
+
+        const iconProps = {
+            icon,
+            style: this.style,
+        };
+
+        const labelProps = {
+            label,
+            style: this.style,
+        };
 
         return (
             <div className={ css('menuItem', {
                 withLabel: !!label,
+                interactive: !!onClick,
             }) }
                 onClick={ this._onClick }>
                 { !!icon && (
-                    <i className='material-icons'>{ icon }</i>
+                    <Icon { ...iconProps } />
                 )}
-                <span>
-                    { !!label && label}
-                </span>
+                { !!label && (
+                    <Label { ...labelProps } />
+                )}
             </div>
         );
     }

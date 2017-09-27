@@ -1,28 +1,7 @@
 @import '../../common/common';
 
-.light {
-    .menuItem:hover {
-        background-color: $background-light;
-        color: $content-light-primary;
-    }
-
-    .menuItem:active {
-        background-color: $background-light-base;
-        color: $content-light-secondary;
-    }
-}
-
-.menuItem:hover {
-    background-color: $background;
-    color: $content-primary;
-}
-.menuItem:active {
-    background-color: $background-base;
-    color: $content-secondary;
-}
-
 .menuItem {
-    display: inline-block;
+    display: block;
 
     cursor: pointer;
 
@@ -30,6 +9,8 @@
     text-align: center;
     height: 100%;
     line-height: normal;
+
+    padding-right: .4em;
 
     i {
         width: 1em;

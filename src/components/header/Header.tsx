@@ -1,8 +1,15 @@
 // Dependencies
 import * as React from 'react';
 
+// Common
+import { FONT_SIZE } from '../../common/constants';
+
 // Components
 import MenuItem, { IMenuItemProps } from '../menuItem/MenuItem';
+import { Label } from '../base/components';
+
+// Utilities
+import css from '../../utilities/css';
 
 // Local
 import './Header.scss';
@@ -29,14 +36,20 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
             rightItems,
         } = this.props;
 
+        const titleProps = {
+            className: 'header-title',
+            label: title,
+            fontSize: FONT_SIZE.massive,
+        };
+
         return (
-            <div className = {'header'}>
+            <div className = { css('header', {
+                highlight: true,
+            }) }>
                 <div className={ 'header-left' }>
                     { !!leftItems && leftItems.map(this._renderSideItem) }
                 </div>
-                <span className='header-title'>
-                    { !!title && title }
-                </span>
+                <Label { ...titleProps } />
                 <div className={ 'header-right' }>
                     { !!rightItems && rightItems.map(this._renderSideItem) }
                 </div>
@@ -47,6 +60,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
     private _renderSideItem(item: IMenuItemProps, index: number) {
         const itemForRender = item;
         itemForRender.label = '';
+        // itemForRender.style = this.style;
 
         return (
             <MenuItem { ...itemForRender }

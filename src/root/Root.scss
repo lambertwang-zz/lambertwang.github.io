@@ -19,14 +19,7 @@
     overflow-x: hidden;
 }
 
-.light {
-    .content {
-        background-color: $background-light;
-    }
-}
-
 .content {
-    background-color: $background;
 
     // Fill mode
     &.small {

@@ -55,14 +55,14 @@ export default class ThingList extends React.Component<IThingListProps, {}> {
 
         return (
             <div className={ css('bggThing', {
-                even: !!(index % 2),
+                highlight: !!(index % 2),
                 }) }
                 key={ id }
                 style={ { height: rowHeight } }>
                 <Image { ...imageProps } />
                 <div className={ 'bggThing-content' }>
                     <span className={ css('bggThing-title', {
-                        marquee: true,
+                        // marquee: true,
                     }) }>
                         { name }
                     </span>

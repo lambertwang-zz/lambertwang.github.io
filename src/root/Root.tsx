@@ -70,6 +70,7 @@ class RootPresentation extends React.Component<IProps, IState> {
                  }) }>
                 <div className={ css('content', {
                         [SIZE_BREAKPOINT[sizeThreshold]]: true,
+                        primary: true,
                     }) }>
                     <Header />
                     <Pullout />

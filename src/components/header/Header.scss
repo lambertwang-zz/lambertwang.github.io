@@ -1,19 +1,10 @@
 @import '../../common/common';
 
-.light {
-    .header { 
-        background-color: $background-light-highlight;
-        color: $content-light-highlight;
-    }
-}
-
 .header {
-    background-color: $background-highlight;
-    color: $content-highlight;
-
     line-height: 2em;
     height: 2em;
-    font-size: 32px; 
+
+    font-size: 32px;
 
     text-align: center;
     align-items: center;
@@ -23,7 +14,6 @@
     }
 
     .header-title {
-        position: absolute;
-        transform: translate(-50%, 0%);
+        margin: 0 auto;
     }
 }
