@@ -13,7 +13,7 @@ export function getPrimaryName(thing: any): string {
     } else {
         return name.value;
     }
-    console.log('Thing has no primary name');
+    console.warn('Thing has no primary name');
 
     return '';
 }

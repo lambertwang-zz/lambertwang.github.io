@@ -1,7 +1,4 @@
-
 export function decodeHtml(input: string) {
-    console.log('test');
-
     // Decode until length doesn't change
     let textSize = 0;
     let text = input;

@@ -43,7 +43,7 @@ const headerTagRenderers = [
             maxplaytime,
             minplaytime,
         } = tags;
-        return minplaytime.value + ' minutes to ' + maxplaytime.value + ' minutes playtime';
+        return minplaytime.value + ' to ' + maxplaytime.value + ' minutes playtime';
     },
 ];
 
@@ -62,32 +62,30 @@ export default class ThingView extends React.Component<IThingViewProps, {}> {
         } = this.props;
 
         const {
-            // id,
-            // rank,
             tags,
         } = item;
 
         const {
             image,
-            // yearpublished,
         } = tags;
 
         const imageProps = {
+            className: 'thingView-header-img',
             src: image.value,
-            width: '160px',
-            height: '160px',
+            width: '280px',
+            height: '240px',
         };
-
-        console.log(item);
 
         return (
             <div className={ 'thingView' }>
                 <div className={ 'thingView-header' }>
                     <Image { ...imageProps } />
+                    <div className={ 'thingView-header-img-cover' } />
                     <div className={ 'thingView-header-info' }>
                         { headerTagRenderers.map((labelGenerator, index) => (
                             <Label className={ css('thingView-header-tag', {
                                     highlight: !!(index % 2),
+                                    primary: !(index % 2),
                                 }) }
                                 key={ index }
                                 label={ labelGenerator(tags) }

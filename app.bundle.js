@@ -1884,7 +1884,6 @@ var BggApi = /** @class */ (function () {
             rank: Number(itemXml.getAttribute('rank')),
             tags: {},
         };
-        console.log(itemXml);
         function extractTag(xml) {
             var tag = {
                 value: '',
@@ -1924,7 +1923,6 @@ var BggApi = /** @class */ (function () {
             return tags;
         }
         ret.tags = generateTags(itemXml);
-        console.log(ret);
         return ret;
     };
     BggApi._request = function (endPoint, onReadyFunction, parameters) {
@@ -1933,7 +1931,6 @@ var BggApi = /** @class */ (function () {
         var request = new XMLHttpRequest();
         request.onreadystatechange = onReadyFunction;
         var url = url_1.formUrl(ROOT_PATH, endPoint, parameters);
-        console.log(url);
         request.open('get', url);
         request.send();
     };
@@ -4210,7 +4207,6 @@ exports.reducer = redux_1.combineReducers({
             case actionNames_1.RECEIVE_THING_LIST:
                 return 'Hot Board Games';
             case actionNames_1.RECEIVE_THING_FOR_SHOW:
-                console.log(thing);
                 return thing_1.getPrimaryName(thing);
             case actionNames_1.REQUEST_THING_LIST:
             case actionNames_1.SHOW_THING:
@@ -4312,7 +4308,7 @@ function getPrimaryName(thing) {
     else {
         return name.value;
     }
-    console.log('Thing has no primary name');
+    console.warn('Thing has no primary name');
     return '';
 }
 exports.getPrimaryName = getPrimaryName;
@@ -4503,7 +4499,6 @@ var ThingList = /** @class */ (function (_super) {
             height: rowHeight,
             width: rowHeight,
         };
-        console.log(thing);
         return (React.createElement("div", { className: css_1.default('bggThing', {
                 highlight: !!(index % 2),
                 interactive: true,
@@ -4781,7 +4776,7 @@ var headerTagRenderers = [
     },
     function (tags) {
         var maxplaytime = tags.maxplaytime, minplaytime = tags.minplaytime;
-        return minplaytime.value + ' minutes to ' + maxplaytime.value + ' minutes playtime';
+        return minplaytime.value + ' to ' + maxplaytime.value + ' minutes playtime';
     },
 ];
 var ThingView = /** @class */ (function (_super) {
@@ -4791,22 +4786,21 @@ var ThingView = /** @class */ (function (_super) {
     }
     ThingView.prototype.render = function () {
         var item = this.props.item;
-        var 
-        // id,
-        // rank,
-        tags = item.tags;
+        var tags = item.tags;
         var image = tags.image;
         var imageProps = {
+            className: 'thingView-header-img',
             src: image.value,
-            width: '160px',
-            height: '160px',
+            width: '280px',
+            height: '240px',
         };
-        console.log(item);
         return (React.createElement("div", { className: 'thingView' },
             React.createElement("div", { className: 'thingView-header' },
                 React.createElement(Image_1.default, __assign({}, imageProps)),
+                React.createElement("div", { className: 'thingView-header-img-cover' }),
                 React.createElement("div", { className: 'thingView-header-info' }, headerTagRenderers.map(function (labelGenerator, index) { return (React.createElement(Label_1.default, { className: css_1.default('thingView-header-tag', {
                         highlight: !!(index % 2),
+                        primary: !(index % 2),
                     }), key: index, label: labelGenerator(tags), fontSize: constants_1.FONT_SIZE.large })); }))),
             React.createElement("div", { className: 'thingView-main' }, this._renderDescription())));
     };
@@ -4829,7 +4823,6 @@ exports.default = ThingView;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 function decodeHtml(input) {
-    console.log('test');
     // Decode until length doesn't change
     var textSize = 0;
     var text = input;
@@ -4883,7 +4876,7 @@ exports = module.exports = __webpack_require__(14)(undefined);
 
 
 // module
-exports.push([module.i, ".light .secondary {\n  background-color: #fcf9f3;\n  color: #93a1a1; }\n  .light .secondary .interactive:hover {\n    background-color: #ffffff;\n    color: #eee8d5; }\n\n.light .primary {\n  background-color: #fdf6e3;\n  color: #657b83; }\n  .light .primary .interactive:hover {\n    background-color: #fcf9f3;\n    color: #93a1a1; }\n  .light .primary .interactive:active {\n    background-color: #ffffff;\n    color: #eee8d5; }\n\n.light .highlight {\n  background-color: #eee8d5;\n  color: #586e75; }\n  .light .highlight .interactive:hover {\n    background-color: #fdf6e3;\n    color: #657b83; }\n  .light .highlight .interactive:active {\n    background-color: #fcf9f3;\n    color: #93a1a1; }\n\n.secondary {\n  background-color: #00212b;\n  color: #586e75; }\n  .secondary .interactive:hover {\n    background-color: #000000;\n    color: #073642; }\n\n.primary {\n  background-color: #002b36;\n  color: #839496; }\n  .primary .interactive:hover {\n    background-color: #00212b;\n    color: #586e75; }\n  .primary .interactive:active {\n    background-color: #000000;\n    color: #073642; }\n\n.highlight {\n  background-color: #073642;\n  color: #93a1a1; }\n  .highlight .interactive:hover {\n    background-color: #002b36;\n    color: #839496; }\n  .highlight .interactive:active {\n    background-color: #00212b;\n    color: #586e75; }\n\nbody {\n  user-select: none;\n  cursor: default;\n  margin: 0;\n  font-family: \"Droid Sans\"; }\n\n.marquee {\n  animation: marquee 10s linear infinite; }\n\n@keyframes marquee {\n  0% {\n    transform: translate(100%, 0); }\n  100% {\n    transform: translate(-100%, 0); } }\n\n.interactive {\n  cursor: pointer; }\n\n.thingView-header {\n  white-space: nowrap;\n  overflow: hidden; }\n  .thingView-header .thingView-header-info {\n    display: inline-block;\n    vertical-align: top;\n    margin-left: 6px;\n    width: 100%; }\n    .thingView-header .thingView-header-info .thingView-header-tag {\n      padding: 6px;\n      display: block; }\n\n.thingView-description p {\n  margin: 0;\n  padding: 12px;\n  text-indent: 40px;\n  text-align: justify; }\n", ""]);
+exports.push([module.i, ".light .secondary {\n  background-color: #fcf9f3;\n  color: #93a1a1; }\n  .light .secondary .interactive:hover {\n    background-color: #ffffff;\n    color: #eee8d5; }\n\n.light .primary {\n  background-color: #fdf6e3;\n  color: #657b83; }\n  .light .primary .interactive:hover {\n    background-color: #fcf9f3;\n    color: #93a1a1; }\n  .light .primary .interactive:active {\n    background-color: #ffffff;\n    color: #eee8d5; }\n\n.light .highlight {\n  background-color: #eee8d5;\n  color: #586e75; }\n  .light .highlight .interactive:hover {\n    background-color: #fdf6e3;\n    color: #657b83; }\n  .light .highlight .interactive:active {\n    background-color: #fcf9f3;\n    color: #93a1a1; }\n\n.secondary {\n  background-color: #00212b;\n  color: #586e75; }\n  .secondary .interactive:hover {\n    background-color: #000000;\n    color: #073642; }\n\n.primary {\n  background-color: #002b36;\n  color: #839496; }\n  .primary .interactive:hover {\n    background-color: #00212b;\n    color: #586e75; }\n  .primary .interactive:active {\n    background-color: #000000;\n    color: #073642; }\n\n.highlight {\n  background-color: #073642;\n  color: #93a1a1; }\n  .highlight .interactive:hover {\n    background-color: #002b36;\n    color: #839496; }\n  .highlight .interactive:active {\n    background-color: #00212b;\n    color: #586e75; }\n\nbody {\n  user-select: none;\n  cursor: default;\n  margin: 0;\n  font-family: \"Droid Sans\"; }\n\n.marquee {\n  animation: marquee 10s linear infinite; }\n\n@keyframes marquee {\n  0% {\n    transform: translate(100%, 0); }\n  100% {\n    transform: translate(-100%, 0); } }\n\n.interactive {\n  cursor: pointer; }\n\n.light .thingView-header .thingView-header-img-cover {\n  background: linear-gradient(90deg, rgba(253, 246, 227, 0), rgba(253, 246, 227, 0) 40%, #fdf6e3 80%, #fdf6e3); }\n\n.light .thingView-header .thingView-header-info .thingView-header-tag.primary {\n  background: linear-gradient(90deg, rgba(253, 246, 227, 0), rgba(253, 246, 227, 0) 30%, #fdf6e3); }\n\n.light .thingView-header .thingView-header-info .thingView-header-tag.highlight {\n  background: linear-gradient(90deg, rgba(238, 232, 213, 0), rgba(238, 232, 213, 0) 30%, #eee8d5); }\n\n.thingView-header .thingView-header-img-cover {\n  background: linear-gradient(90deg, rgba(0, 43, 54, 0), rgba(0, 43, 54, 0) 40%, #002b36 80%, #002b36); }\n\n.thingView-header .thingView-header-info .thingView-header-tag.primary {\n  background: linear-gradient(90deg, rgba(0, 43, 54, 0), rgba(0, 43, 54, 0) 30%, #002b36); }\n\n.thingView-header .thingView-header-info .thingView-header-tag.highlight {\n  background: linear-gradient(90deg, rgba(7, 54, 66, 0), rgba(7, 54, 66, 0) 30%, #073642); }\n\n.thingView-header {\n  position: relative;\n  white-space: nowrap;\n  overflow: hidden; }\n  .thingView-header .thingView-header-img-cover {\n    position: absolute;\n    top: 0;\n    height: 240px;\n    width: 280px; }\n  .thingView-header .thingView-header-info {\n    position: absolute;\n    left: 0;\n    display: inline-block;\n    vertical-align: top;\n    width: 100%; }\n    .thingView-header .thingView-header-info .thingView-header-tag {\n      padding: 6px;\n      display: block;\n      text-align: right; }\n\n.thingView-description p {\n  margin: 0;\n  padding: 12px;\n  text-indent: 40px;\n  text-align: justify; }\n", ""]);
 
 // exports
 

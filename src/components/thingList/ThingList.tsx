@@ -62,8 +62,6 @@ export default class ThingList extends React.Component<IThingListProps, {}> {
             width: rowHeight,
         };
 
-        console.log(thing);
-
         return (
             <div className={ css('bggThing', {
                 highlight: !!(index % 2),

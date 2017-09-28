@@ -31,7 +31,6 @@ export const reducer = combineReducers<IState>({
             case RECEIVE_THING_LIST:
                 return 'Hot Board Games';
             case RECEIVE_THING_FOR_SHOW:
-                console.log(thing);
                 return getPrimaryName(thing);
             case REQUEST_THING_LIST:
             case SHOW_THING:

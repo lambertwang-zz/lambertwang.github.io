@@ -60,8 +60,6 @@ export default class BggApi {
             tags: {},
         };
 
-        console.log(itemXml);
-
         function extractTag(xml: any): IThingTag {
             const tag: IThingTag = {
                 value: '',
@@ -104,8 +102,6 @@ export default class BggApi {
         }
 
         ret.tags = generateTags(itemXml);
-
-        console.log(ret);
         return ret;
     }
 
@@ -122,7 +118,6 @@ export default class BggApi {
         request.onreadystatechange = onReadyFunction;
 
         const url = formUrl(ROOT_PATH, endPoint, parameters);
-        console.log(url);
 
         request.open('get', url);
         request.send();
