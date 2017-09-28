@@ -72,15 +72,14 @@ export default class ThingView extends React.Component<IThingViewProps, {}> {
         const imageProps = {
             className: 'thingView-header-img',
             src: image.value,
-            width: '280px',
-            height: '240px',
+            width: '200px',
+            height: '200px',
         };
 
         return (
             <div className={ 'thingView' }>
                 <div className={ 'thingView-header' }>
                     <Image { ...imageProps } />
-                    <div className={ 'thingView-header-img-cover' } />
                     <div className={ 'thingView-header-info' }>
                         { headerTagRenderers.map((labelGenerator, index) => (
                             <Label className={ css('thingView-header-tag', {
