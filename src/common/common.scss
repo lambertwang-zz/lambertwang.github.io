@@ -5,6 +5,7 @@ $font-stack: 'Droid Sans';
 
 // Animations
 $ease-out: cubic-bezier(.16, .65, .45, .84);
+$ease-in-out: cubic-bezier(.40, .10, .60, .90);
 $duration-fast: 0.1s;
 $duration-medium: 0.3s;
 
@@ -24,4 +25,8 @@ body {
 @keyframes marquee {
     0% { transform: translate(100%, 0); }
     100% { transform: translate(-100%, 0); }
+}
+
+.interactive {
+    cursor: pointer;
 }

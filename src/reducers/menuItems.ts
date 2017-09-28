@@ -18,14 +18,8 @@ export interface IState {
     [key: number]: IMenuItemProps;
 }
 
-export const reducer = combineReducers({
-    [MENU_ITEM_ID.showHotItems]: (state = DEFAULT_MENU_ITEMS[MENU_ITEM_ID.showHotItems], action) => {
-        return state;
-    },
-    [MENU_ITEM_ID.togglePullout]: (state = DEFAULT_MENU_ITEMS[MENU_ITEM_ID.togglePullout], action) => {
-        return state;
-    },
-    [MENU_ITEM_ID.toggleTheme]: (state = DEFAULT_MENU_ITEMS[MENU_ITEM_ID.toggleTheme], action) => {
+const reducers = {
+    [MENU_ITEM_ID.toggleTheme]: (state = DEFAULT_MENU_ITEMS[MENU_ITEM_ID.toggleTheme], action: any) => {
         const {
             type,
         } = action;
@@ -36,4 +30,15 @@ export const reducer = combineReducers({
             default: return state;
         }
     },
-});
+};
+
+for (const item in MENU_ITEM_ID) {
+    if (!reducers[item] && !reducers[MENU_ITEM_ID[item] as any]) {
+        const defaultState = DEFAULT_MENU_ITEMS[item];
+        reducers[item] = (state = defaultState, action) => {
+            return state;
+        };
+    }
+}
+
+export const reducer = combineReducers(reducers);

@@ -1,24 +1,19 @@
 // Dependencies
 import * as React from 'react';
 
-// Common
-import BaseComponent, { IBaseProps }from '../BaseComponent';
-
 // Utilities
-import css from '../../../utilities/css';
+import css from '../../utilities/css';
 
 // Local
 import './Label.scss';
 
-export interface ILabelProps extends IBaseProps {
+export interface ILabelProps {
     className?: string;
     label?: string;
+    fontSize?: string;
 }
 
-/**
- * Micro-component passthrough to span
- */
-export class Label extends BaseComponent<ILabelProps, {}> {
+export default class Label extends React.Component<ILabelProps, {}> {
     constructor(props: ILabelProps) {
         super(props);
     }
@@ -27,14 +22,15 @@ export class Label extends BaseComponent<ILabelProps, {}> {
         const {
             className,
             label,
+            fontSize,
         } = this.props;
 
         return (
             <div className={ css('label-container', {
                     [className]: !!className,
-                }) }
-                style={ this.styleCss }>
-                <span className={ 'label' }>
+                }) }>
+                <span className={ 'label' }
+                    style={ { ['fontSize']: fontSize } }>
                     { label }
                 </span>
             </div>

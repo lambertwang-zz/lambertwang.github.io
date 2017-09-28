@@ -3,7 +3,11 @@ import * as React from 'react';
 
 // Components
 import Image from '../image/Image';
+import Label from '../label/Label';
 import List, { IListProps } from '../list/List';
+
+// Datasources
+import { IThing } from '../../datasources/IThing';
 
 // utilities
 import css from '../../utilities/css';
@@ -13,6 +17,7 @@ import './ThingList.scss';
 
 export interface IThingListProps extends IListProps {
     rowHeight?: string;
+    onItemClicked?: (id: string) => any;
 }
 
 export default class ThingList extends React.Component<IThingListProps, {}> {
@@ -34,7 +39,7 @@ export default class ThingList extends React.Component<IThingListProps, {}> {
         );
     }
 
-    private _onRenderThing(thing: any, index: number): JSX.Element {
+    private _onRenderThing(thing: IThing, index: number): JSX.Element {
         const {
             rowHeight,
         } = this.props;
@@ -42,38 +47,49 @@ export default class ThingList extends React.Component<IThingListProps, {}> {
         const {
             id,
             rank,
-            thumbnail,
-            name,
-            yearPublished,
+            tags,
         } = thing;
 
+        const {
+            thumbnail,
+            yearpublished,
+            name,
+        } = tags;
+
         const imageProps = {
-            src: thumbnail,
+            src: thumbnail.value,
             height: rowHeight,
             width: rowHeight,
         };
 
+        console.log(thing);
+
         return (
             <div className={ css('bggThing', {
                 highlight: !!(index % 2),
+                interactive: true,
                 }) }
                 key={ id }
-                style={ { height: rowHeight } }>
+                style={ { height: rowHeight } }
+                onClick={ this._onItemClicked.bind(this, id) }>
                 <Image { ...imageProps } />
                 <div className={ 'bggThing-content' }>
-                    <span className={ css('bggThing-title', {
-                        // marquee: true,
-                    }) }>
-                        { name }
-                    </span>
-                    <span className={ 'bggThing-subtitle' }>
-                        { 'Rank: ' + rank }
-                    </span>
-                    <span className={ 'bggThing-subtitle' }>
-                        { 'Year Published: ' + yearPublished }
-                    </span>
+                    <Label className={ 'bggThing-title' }
+                        label={ name.value } />
+                    <Label className={ 'bggThing-subtitle' }
+                        label={ 'Rank: ' + rank } />
+                    <Label className={ 'bggThing-subtitle' }
+                        label={ 'Year Published: ' + yearpublished.value } />
                 </div>
             </div>
         );
+    }
+
+    private _onItemClicked(id: string) {
+        const {
+            onItemClicked,
+        } = this.props;
+
+        onItemClicked(id);
     }
 }

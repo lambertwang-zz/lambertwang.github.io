@@ -16,6 +16,7 @@ export const reducer = combineReducers<IState>({
     items: (
         state = [
             MENU_ITEM_ID.showHotItems,
+            MENU_ITEM_ID.showThing,
             MENU_ITEM_ID.toggleTheme,
         ],
         action) => {

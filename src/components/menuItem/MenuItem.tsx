@@ -2,8 +2,8 @@
 import * as React from 'react';
 
 // Components
-import BaseComponent, { IBaseProps } from '../base/BaseComponent';
-import { Icon, Label } from '../base/components';
+import Icon from '../icon/Icon';
+import Label from '../label/Label';
 
 // Utilities
 import css from '../../utilities/css';
@@ -11,13 +11,14 @@ import css from '../../utilities/css';
 // Local
 import './MenuItem.scss';
 
-export interface IMenuItemProps extends IBaseProps {
+export interface IMenuItemProps {
     label?: string;
     icon?: string;
     onClick?: () => void;
+    fontSize?: string;
 }
 
-export default class MenuItem extends BaseComponent<IMenuItemProps, {}> {
+export default class MenuItem extends React.Component<IMenuItemProps, {}> {
     constructor(props: IMenuItemProps) {
         super(props);
 
@@ -29,16 +30,17 @@ export default class MenuItem extends BaseComponent<IMenuItemProps, {}> {
             label,
             icon,
             onClick,
+            fontSize,
         } = this.props;
 
         const iconProps = {
             icon,
-            style: this.style,
+            fontSize,
         };
 
         const labelProps = {
             label,
-            style: this.style,
+            fontSize,
         };
 
         return (
@@ -63,8 +65,8 @@ export default class MenuItem extends BaseComponent<IMenuItemProps, {}> {
         } = this.props;
 
         if (onClick) {
-            ev.stopPropagation();
-            ev.preventDefault();
+            // ev.stopPropagation();
+            // ev.preventDefault();
             onClick();
         }
     }

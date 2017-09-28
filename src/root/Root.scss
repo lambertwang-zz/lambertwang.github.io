@@ -20,27 +20,31 @@
 }
 
 .content {
+    user-select: auto;
+    cursor: auto;
 
     // Fill mode
     &.small {
+        min-width: 480px;
         width: 100%;
         margin: 0px auto;
     }
 
     // Column mode
     width: 640px;
-    margin: 16px auto;
+    margin: 12px auto;
 
     &.large {
         width: 60%
     }
 
-    &.xlarge &.xxlarge {
-        width: 1280px;
+    &.xlarge, &.xxlarge {
+        // 60% of 1920
+        width: 1152px;
     }
 
 }
 
 .content-main {
-    padding: 16px;
+    padding: 12px;
 }

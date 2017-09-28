@@ -1,3 +1,10 @@
+export enum CONTENT_LAYOUT {
+    empty,
+    list,
+    loading,
+    thing,
+}
+
 export enum THEME {
     Dark = 0,
     Light,

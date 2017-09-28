@@ -4,26 +4,28 @@ import { connect } from 'react-redux';
 
 // Actions
 import resizeBreakpoint from '../actions/resizeBreakpoint';
-import requestHotList from '../actions/requestHotList';
 
 // Local
 import './Root.scss';
 import { IState as IRootState } from './rootReducer';
-import rootStore from './rootStore';
 
 // Components and containers
+import Label from '../components/label/Label';
+import Loading from '../components/loading/Loading';
 import Header from '../containers/header';
 import ContentList from '../containers/contentList';
+import ContentThing from '../containers/contentThing';
 import Pullout from '../containers/pullout';
 
 // Utilities
-import { THEME } from '../common/constants';
+import { CONTENT_LAYOUT, THEME } from '../common/constants';
 import css from '../utilities/css';
 import { SIZE_BREAKPOINT, getSizeThreshold } from '../utilities/responsive';
 import { FONT_NAMES, loadGoogleFont } from '../utilities/fontLoader';
 
 interface IProps {
     isPulloutVisible?: boolean;
+    layout?: CONTENT_LAYOUT;
     theme?: THEME;
     onResizeBreakpoint?: (breakpoint: SIZE_BREAKPOINT) => void;
 }
@@ -49,19 +51,37 @@ class RootPresentation extends React.Component<IProps, IState> {
 
     public componentDidMount() {
         window.addEventListener('resize', this._onWindowResized);
-
-        // Load hot items on page load
-        rootStore.dispatch(requestHotList());
     }
 
     public render() {
         const {
+            layout,
             theme,
         } = this.props;
 
         const {
             sizeThreshold,
         } = this.state;
+
+        let content: JSX.Element = ( <div /> );
+
+        switch (layout) {
+            case CONTENT_LAYOUT.empty:
+                content = (
+                    <Label label={ 'Welcome!' } />
+                );
+                break;
+            case CONTENT_LAYOUT.loading:
+                content = ( <Loading /> );
+                break;
+            case CONTENT_LAYOUT.list:
+                content = ( <ContentList /> );
+                break;
+            case CONTENT_LAYOUT.thing:
+                content = ( <ContentThing /> );
+                break;
+            default: break;
+        }
 
         return (
             <div
@@ -73,10 +93,10 @@ class RootPresentation extends React.Component<IProps, IState> {
                         primary: true,
                     }) }>
                     <Header />
-                    <Pullout />
                     <div className={ 'content-main' }>
-                        <ContentList />
+                        { content }
                     </div>
+                    <Pullout />
                 </div>
             </div>
         );
@@ -92,6 +112,7 @@ class RootPresentation extends React.Component<IProps, IState> {
 
 function mapStateToProps(state: IRootState, ownProps: any): IProps {
     return {
+        layout: state.content.layout,
         theme: state.root.theme,
     };
 }

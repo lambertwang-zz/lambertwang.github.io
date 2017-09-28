@@ -6,7 +6,7 @@ import { FONT_SIZE } from '../../common/constants';
 
 // Components
 import MenuItem, { IMenuItemProps } from '../menuItem/MenuItem';
-import { Label } from '../base/components';
+import Label from '../label/Label';
 
 // Utilities
 import css from '../../utilities/css';
@@ -60,6 +60,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
     private _renderSideItem(item: IMenuItemProps, index: number) {
         const itemForRender = item;
         itemForRender.label = '';
+        itemForRender.fontSize = FONT_SIZE.massive;
         // itemForRender.style = this.style;
 
         return (

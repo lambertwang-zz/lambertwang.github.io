@@ -1,24 +1,16 @@
 // Dependencies
 import * as React from 'react';
 
-// Common
-import BaseComponent, { IBaseProps } from '../BaseComponent';
-
 // Utilities
-import css from '../../../utilities/css';
+import css from '../../utilities/css';
 
-// Local
-// import './Label.scss';
-
-export interface IIconProps extends IBaseProps {
+export interface IIconProps {
     className?: string;
     icon?: string;
+    fontSize?: string;
 }
 
-/**
- * Micro-component passthrough to span
- */
-export class Icon extends BaseComponent<IIconProps, {}> {
+export default class Icon extends React.Component<IIconProps, {}> {
     constructor(props: IIconProps) {
         super(props);
     }
@@ -27,13 +19,14 @@ export class Icon extends BaseComponent<IIconProps, {}> {
         const {
             className,
             icon,
+            fontSize,
         } = this.props;
 
         return (
             <i className={css('material-icons', {
                     [className]: !!className,
                 }) }
-                style={ this.styleCss }>
+                style={ { ['fontSize']: fontSize } }>
                 { icon }
             </i>
         );

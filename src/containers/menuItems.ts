@@ -4,14 +4,24 @@ import rootStore from '../root/rootStore';
 // Actions
 import requestHotList from '../actions/requestHotList';
 import setTheme from '../actions/setTheme';
+import showThing from '../actions/showThing';
 import togglePullout from '../actions/togglePullout';
+
 export enum MENU_ITEM_ID {
-    toggleTheme,
+    showThing,
     showHotItems,
     togglePullout,
+    toggleTheme,
 }
 
 export const DEFAULT_MENU_ITEMS = {
+    [MENU_ITEM_ID.showThing]: {
+        label: 'Get Thing',
+        icon: 'get_app',
+        onClick: () => {
+            rootStore.dispatch(showThing('180263'));
+        },
+    },
     [MENU_ITEM_ID.toggleTheme]: {
         label: 'Theme Toggle',
         icon: 'invert_colors',
@@ -21,7 +31,7 @@ export const DEFAULT_MENU_ITEMS = {
     },
     [MENU_ITEM_ID.showHotItems]: {
         label: 'Hot Items',
-        icon: '',
+        icon: 'whatshot',
         onClick: () => {
             rootStore.dispatch(requestHotList());
         },

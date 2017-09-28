@@ -1,6 +1,6 @@
 @import '../../common/common';
 
-$pad: 8px;
+$pad: 12px;
 
 .bggThing {
     padding: $pad 0 $pad $pad;
@@ -17,13 +17,13 @@ $pad: 8px;
 
     span {
         display: block;
+    }
 
-        &.bggThing-title {
-            font-size: 24px;
-        }
+    .bggThing-title {
+        font-size: 24px;
+    }
 
-        &.bggThing-subtitle {
-            font-size: 16px;
-        }
+    .bggThing-subtitle {
+        font-size: 16px;
     }
 }

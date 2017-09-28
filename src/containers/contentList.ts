@@ -1,6 +1,9 @@
 // Dependencies
 import { connect } from 'react-redux';
 
+// Actions
+import showThing from '../actions/showThing';
+
 // Root
 import { IState as IRootState } from '../root/rootReducer';
 
@@ -20,6 +23,9 @@ function mapStateToProps(state: IRootState, ownProps: any): IThingListProps {
 
 function mapDispatchToProps(dispatch: any, ownProps: any): IThingListProps {
     return {
+        onItemClicked: (id: string) => {
+            dispatch(showThing(id));
+        },
     };
 }
 
