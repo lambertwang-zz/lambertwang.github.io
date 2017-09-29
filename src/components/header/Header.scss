@@ -11,11 +11,15 @@
     text-align: center;
     align-items: center;
 
+    transition: all 1s linear;
+
     &.fullWidth {
         position: fixed;
         left: 0;
         right: 0;
         top: 0;
+
+        animation: headerDrop $duration-fast $ease-out;
 
     }
 
@@ -38,5 +42,21 @@
             white-space: nowrap;
         }
         overflow: hidden;
+    }
+}
+
+@keyframes headerDrop {
+    0% {
+        transform: translate(0, -100%);
+    }
+
+    10% {
+    }
+
+    90% {
+    }
+
+    100% {
+        transform: translate(0, 0%);
     }
 }

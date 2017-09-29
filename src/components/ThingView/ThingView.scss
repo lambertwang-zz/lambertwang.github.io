@@ -23,7 +23,6 @@
 }
 
 .thingView-header {
-    position: relative;
     white-space: nowrap;
     overflow: hidden;
 
@@ -32,13 +31,7 @@
     }
 
     .thingView-header-info {
-        position: absolute;
-        left: 0;
-
-        display: inline-block;
         vertical-align: top;
-
-        width: 100%;
 
         .thingView-header-tag {
             padding: 6px;
@@ -55,5 +48,4 @@
         text-indent: 40px;
         text-align: justify;
     }
-
 }
