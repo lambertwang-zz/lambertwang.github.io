@@ -57,13 +57,23 @@ export default class ThingView extends React.Component<IThingViewProps, {}> {
     }
 
     public render() {
-        const {
-            item,
-        } = this.props;
+        console.log(this.props.item);
+        return (
+            <div className={ 'thingView' }>
+                { this._renderHeader() }
+                { this._renderLinks() }
+                <div className={ 'thingView-main' }>
+                    { this._renderDescription() }
+                </div>
 
+            </div>
+        );
+    }
+
+    private _renderHeader() {
         const {
             tags,
-        } = item;
+        } = this.props.item;
 
         const {
             image,
@@ -77,24 +87,33 @@ export default class ThingView extends React.Component<IThingViewProps, {}> {
         };
 
         return (
-            <div className={ 'thingView' }>
-                <div className={ 'thingView-header' }>
-                    <Image { ...imageProps } />
-                    <div className={ 'thingView-header-info' }>
-                        { headerTagRenderers.map((labelGenerator, index) => (
-                            <Label className={ css('thingView-header-tag', {
-                                    highlight: !!(index % 2),
-                                    primary: !(index % 2),
-                                }) }
-                                key={ index }
-                                label={ labelGenerator(tags) }
-                                fontSize={ FONT_SIZE.large }/>
-                        )) }
-                    </div>
+            <div className={ 'thingView-header' }>
+                <Image { ...imageProps } />
+                <div className={ 'thingView-header-info' }>
+                    { headerTagRenderers.map((labelGenerator, index) => (
+                        <Label className={ css('thingView-header-tag', {
+                                highlight: !!(index % 2),
+                                primary: !(index % 2),
+                            }) }
+                            key={ index }
+                            label={ labelGenerator(tags) }
+                            fontSize={ FONT_SIZE.large }/>
+                    )) }
                 </div>
-                <div className={ 'thingView-main' }>
-                    { this._renderDescription() }
-                </div>
+            </div>
+        );
+    }
+
+    private _renderLinks() {
+        const {
+            tags,
+        } = this.props.item;
+        const {
+            links,
+        } = tags;
+
+        return (
+            <div className={ 'thingView-links' }>
 
             </div>
         );

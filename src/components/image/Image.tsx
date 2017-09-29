@@ -21,6 +21,8 @@ export default class Image extends React.Component<IImageProps, {}> {
             height,
         } = this.props;
 
+        const props = { src: '' };
+
         const style = {
             width,
             height,
@@ -30,7 +32,7 @@ export default class Image extends React.Component<IImageProps, {}> {
             <div className={ 'image-container '}
                 style={ style }>
                 <img className={ 'image' }
-                    { ...this.props }/>
+                    { ...props }/>
             </div>
         );
     }
