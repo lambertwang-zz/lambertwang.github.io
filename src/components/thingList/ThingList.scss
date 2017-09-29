@@ -7,13 +7,15 @@ $pad: 12px;
     border-right: solid $pad rgba(0, 0, 0, 0);
     white-space: nowrap;
     overflow: hidden;
+
+    .image-container {
+        float: left;
+    }
 }
 
 .bggThing-content {
     padding-left: 6px;
-    display: inline-block;
     vertical-align: top;
-    width: 100%;
 
     span {
         display: block;

@@ -71,7 +71,8 @@ export default class ThingList extends React.Component<IThingListProps, {}> {
                 style={ { height: rowHeight } }
                 onClick={ this._onItemClicked.bind(this, id) }>
                 <Image { ...imageProps } />
-                <div className={ 'bggThing-content' }>
+                <div className={ 'bggThing-content' }
+                    style={ { marginLeft: rowHeight } }>
                     <Label className={ 'bggThing-title' }
                         label={ name.value } />
                     <Label className={ 'bggThing-subtitle' }

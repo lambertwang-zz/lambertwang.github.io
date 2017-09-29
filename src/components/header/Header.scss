@@ -1,6 +1,8 @@
 @import '../../common/common';
 
 .header {
+    position: relative;
+
     line-height: 2em;
     height: 2em;
 
@@ -9,11 +11,32 @@
     text-align: center;
     align-items: center;
 
+    &.fullWidth {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+
+    }
+
     .header-left {
         position: absolute;
+        left: 0;
+    }
+
+    .menuItem {
+        display: inline-block;
     }
 
     .header-title {
-        margin: 0 auto;
+        position: relative;
+        left: 10%;
+
+        width: 80%;
+
+        span {
+            white-space: nowrap;
+        }
+        overflow: hidden;
     }
 }

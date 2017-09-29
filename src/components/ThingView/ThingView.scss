@@ -27,6 +27,10 @@
     white-space: nowrap;
     overflow: hidden;
 
+    .image-container {
+        float: left;
+    }
+
     .thingView-header-info {
         position: absolute;
         left: 0;
