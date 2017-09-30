@@ -1,3 +1,6 @@
+// Common
+import { SIZE_BREAKPOINT } from '../common/constants';
+
 export interface ISizeBreakpoints {
     small: number;
     medium: number;
@@ -15,15 +18,7 @@ export const DEFAULT_SIZE_BREAKPOINTS: ISizeBreakpoints = {
     xxlarge: Infinity,
 };
 
-export enum SIZE_BREAKPOINT {
-    small = 0,
-    medium,
-    large,
-    xlarge,
-    xxlarge,
-}
-
-// Necessary due to some horrific typescript enum indexing constraint
+// Necessary due to some typescript enum indexing constraint
 const _SIZE_STRING_ENUM_LOOKUP: { [key: string]: SIZE_BREAKPOINT } = {
     small: SIZE_BREAKPOINT.small,
     medium: SIZE_BREAKPOINT.medium,

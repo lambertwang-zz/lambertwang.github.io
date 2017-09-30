@@ -18,6 +18,7 @@ export interface IHeaderProps {
     title?: string;
     leftItems?: IMenuItemProps[];
     rightItems?: IMenuItemProps[];
+    isFullWidth?: boolean;
 }
 
 export interface IHeaderState {
@@ -27,16 +28,10 @@ export interface IHeaderState {
 export default class Header extends React.Component<IHeaderProps, IHeaderState> {
     constructor(props: IHeaderProps) {
         super(props);
-
-        this._updateScrollPosition = this._updateScrollPosition.bind(this);
     }
 
     public componentWillMount() {
         this.setState({ fullWidth: false });
-    }
-
-    public componentDidMount() {
-        window.addEventListener('scroll', this._updateScrollPosition, true);
     }
 
     public render() {
@@ -44,11 +39,8 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
             title,
             leftItems,
             rightItems,
+            isFullWidth,
         } = this.props;
-
-        const {
-            fullWidth,
-        } = this.state;
 
         const titleProps = {
             className: 'header-title',
@@ -59,7 +51,7 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
         return (
             <div className = { css('header', {
                     highlight: true,
-                    fullWidth,
+                    isFullWidth,
                 }) }
                 ref='self'>
                 <div className={ 'header-left' }>
@@ -77,15 +69,10 @@ export default class Header extends React.Component<IHeaderProps, IHeaderState> 
         const itemForRender = item;
         itemForRender.label = '';
         itemForRender.fontSize = FONT_SIZE.massive;
-        // itemForRender.style = this.style;
 
         return (
             <MenuItem { ...itemForRender }
                 key={ index } />
         );
-    }
-
-    private _updateScrollPosition() {
-        this.setState({ fullWidth: document.documentElement.getElementsByClassName('root')[0].scrollTop > 32 });
     }
 }

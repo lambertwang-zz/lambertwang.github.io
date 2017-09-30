@@ -2,7 +2,14 @@
 import { combineReducers } from 'redux';
 
 // Actions
-import { RESIZE_BREAKPOINT, SET_THEME } from '../actions/actionNames';
+import {
+    PAGE_SCROLL,
+    RESIZE_BREAKPOINT,
+    SET_THEME,
+} from '../actions/actionNames';
+
+// Common
+import { SIZE_BREAKPOINT } from '../common/constants';
 
 // Reducers
 import { reducer as header, IState as HeaderState } from '../reducers/header';
@@ -16,7 +23,8 @@ import { THEME } from '../common/constants';
 
 interface IRootState {
     theme: THEME;
-
+    sizeBreakpoint: SIZE_BREAKPOINT;
+    scrollY: number;
 }
 
 export interface IState {
@@ -52,6 +60,17 @@ const root = combineReducers<IRootState>({
         switch (type) {
             case RESIZE_BREAKPOINT:
                 return breakpoint;
+            default: return state;
+        }
+    },
+    scrollY: (state = 0, action) => {
+        const {
+            type,
+            scrollY,
+        } = action;
+        switch (type) {
+            case PAGE_SCROLL:
+                return scrollY;
             default: return state;
         }
     },

@@ -3,7 +3,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import resizeBreakpoint from '../actions/resizeBreakpoint';
+import onResizeBreakpoint from '../actions/onResizebreakpoint';
+import onPageScroll from '../actions/onPageScroll';
+
+// Common
+import { SIZE_BREAKPOINT } from '../common/constants';
 
 // Local
 import './Root.scss';
@@ -20,7 +24,7 @@ import Pullout from '../containers/pullout';
 // Utilities
 import { CONTENT_LAYOUT, THEME } from '../common/constants';
 import css from '../utilities/css';
-import { SIZE_BREAKPOINT, getSizeThreshold } from '../utilities/responsive';
+import { getSizeThreshold } from '../utilities/responsive';
 import { FONT_NAMES, loadGoogleFont } from '../utilities/fontLoader';
 
 interface IProps {
@@ -28,20 +32,20 @@ interface IProps {
     layout?: CONTENT_LAYOUT;
     theme?: THEME;
     onResizeBreakpoint?: (breakpoint: SIZE_BREAKPOINT) => void;
+    onPageScroll?: (scrollY: number) => void;
+    sizeBreakpoint?: SIZE_BREAKPOINT;
 }
 
 interface IState {
-    sizeThreshold: SIZE_BREAKPOINT;
+    something?: any;
 }
 
 class RootPresentation extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {
-            sizeThreshold: getSizeThreshold(),
-        };
 
         this._onWindowResized = this._onWindowResized.bind(this);
+        this._onPageScroll = this._onPageScroll.bind(this);
     }
 
     public componentWillMount() {
@@ -51,17 +55,15 @@ class RootPresentation extends React.Component<IProps, IState> {
 
     public componentDidMount() {
         window.addEventListener('resize', this._onWindowResized);
+        window.addEventListener('scroll', this._onPageScroll, true);
     }
 
     public render() {
         const {
             layout,
             theme,
+            sizeBreakpoint,
         } = this.props;
-
-        const {
-            sizeThreshold,
-        } = this.state;
 
         let content: JSX.Element = ( <div /> );
 
@@ -87,9 +89,10 @@ class RootPresentation extends React.Component<IProps, IState> {
             <div
                 className={ css('root', {
                     [THEME[theme].toLowerCase()]: true,
-                 }) }>
+                 }) }
+                ref='self'>
                 <div className={ css('content', {
-                        [SIZE_BREAKPOINT[sizeThreshold]]: true,
+                        [SIZE_BREAKPOINT[sizeBreakpoint]]: true,
                         primary: true,
                     }) }>
                     <Header />
@@ -104,9 +107,13 @@ class RootPresentation extends React.Component<IProps, IState> {
 
     private _onWindowResized() {
         const newSize = getSizeThreshold();
-        if (newSize !== this.state.sizeThreshold) {
-            this.setState({ sizeThreshold: getSizeThreshold() });
+        if (newSize !== this.props.sizeBreakpoint) {
+            this.props.onResizeBreakpoint(newSize);
         }
+    }
+
+    private _onPageScroll() {
+        this.props.onPageScroll((this.refs.self as HTMLElement).scrollTop);
     }
 }
 
@@ -114,12 +121,14 @@ function mapStateToProps(state: IRootState, ownProps: any): IProps {
     return {
         layout: state.content.layout,
         theme: state.root.theme,
+        sizeBreakpoint: state.root.sizeBreakpoint,
     };
 }
 
 function mapDispatchToProps(dispatch: any, ownProps: any): IProps {
     return {
-        onResizeBreakpoint: (breakpoint: SIZE_BREAKPOINT) => { dispatch(resizeBreakpoint(breakpoint)); },
+        onResizeBreakpoint: (breakpoint: SIZE_BREAKPOINT) => { dispatch(onResizeBreakpoint(breakpoint)); },
+        onPageScroll: (scrollY) => { dispatch(onPageScroll(scrollY)); },
     };
 }
 

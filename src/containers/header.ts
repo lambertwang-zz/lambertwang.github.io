@@ -20,6 +20,7 @@ function mapStateToProps(state: IRootState, ownProps: any): IHeaderProps {
     return {
         leftItems,
         title: state.header.title,
+        isFullWidth: state.root.scrollY > 32,
     };
 }
 

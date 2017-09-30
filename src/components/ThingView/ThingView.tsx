@@ -109,7 +109,7 @@ export default class ThingView extends React.Component<IThingViewProps, {}> {
             tags,
         } = this.props.item;
         const {
-            links,
+            // links,
         } = tags;
 
         return (

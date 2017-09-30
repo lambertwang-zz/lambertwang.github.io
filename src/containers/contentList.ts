@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 // Actions
 import showThing from '../actions/showThing';
 
+// Common
+import { ROW_HEIGHT_MAP } from '../common/constants';
+
 // Root
 import { IState as IRootState } from '../root/rootReducer';
 
@@ -13,11 +16,12 @@ import { default as Component, IThingListProps } from '../components/thingList/T
 function mapStateToProps(state: IRootState, ownProps: any): IThingListProps {
     const {
         content,
+        root,
     } = state;
 
     return {
         items: content.things,
-        rowHeight: '80px',
+        rowHeight: ROW_HEIGHT_MAP[root.sizeBreakpoint],
     };
 }
 

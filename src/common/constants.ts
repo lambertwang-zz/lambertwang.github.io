@@ -1,3 +1,11 @@
+export enum SIZE_BREAKPOINT {
+    small = 0,
+    medium,
+    large,
+    xlarge,
+    xxlarge,
+}
+
 export enum CONTENT_LAYOUT {
     empty,
     list,
@@ -23,4 +31,12 @@ export const FONT_SIZE = {
     large: '18px',
     giant: '24px',
     massive: '32px',
+};
+
+export const ROW_HEIGHT_MAP = {
+    [SIZE_BREAKPOINT.small]: '60px',
+    [SIZE_BREAKPOINT.medium]: '80px',
+    [SIZE_BREAKPOINT.large]: '80px',
+    [SIZE_BREAKPOINT.xlarge]: '100px',
+    [SIZE_BREAKPOINT.xxlarge]: '120px',
 };
